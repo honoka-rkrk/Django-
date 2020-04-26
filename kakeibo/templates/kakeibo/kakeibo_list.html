@@ -9,6 +9,9 @@
                 <a href="{% url 'kakeibo:kakeibo_list' %}">TOP</a>
             </li>
             <li class="breadcrumb-item active">一覧表示</li>
+            <li class="breadcrumb-item">
+                <a href="{% url 'kakeibo:kakeibo_circle' %}">円グラフ</a>
+            </li>
         </ol>
         <!-- ページタイトル -->
         <div clss="card mb-3">
@@ -17,7 +20,7 @@
             <div class="card-body">
                 <!-- テーブルの定義 -->
                 <div class="table-responsive">
-                    <table width="100%" class="table table-striped table-bordered table-hover">
+                    <table id=kakeibo_list width="100%" class="table table-striped table-bordered table-hover">
                         <!-- 表の列の定義 -->
                         <thead>
                             <tr>
@@ -25,6 +28,7 @@
                                 <th class="text-center">カテゴリ</th>
                                 <th class="text-center">金額</th>
                                 <th class="text-center">メモ</th>
+                                <th class="text-center">更新・削除</th>
                             </tr>
                         </thead>
                         <!-- ここまでが表の列の定義 -->
@@ -36,6 +40,10 @@
                                     <td class="text-center" width="100">{{ item.category }}</td>
                                     <td class="text-center" width="140">{{ item.money }}</td>
                                     <td class="text-center" width="140">{{ item.memo }}</td>
+                                    <td class="text-center" width="140">
+                                <a class="btn btn-primary" href="{% url 'kakeibo:kakeibo_update' item.pk %}" role="button">更新ページ</a>
+                                <a class="btn btn-primary" href="{% url 'kakeibo:kakeibo_delete' item.pk %}" role="button">削除ページ</a>
+                                </td>
                                 </tr>
                             {% endfor %}
                         </tbody>
